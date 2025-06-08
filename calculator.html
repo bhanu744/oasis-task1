@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .calculator {
+      background:black;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      width: 400px;
+    }
+
+    input {
+      width: 100%;
+      height: 45px;
+      font-size: 22px;
+      text-align: right;
+      padding-right: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #e0e0e0;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #ccc;
+    }
+
+    .equal {
+      grid-column: span 2;
+      background: #4caf50;
+      color: white;
+    }
+
+    .equal:hover {
+      background: #45a049;
+    }
+
+    .clear {
+      background: #f44336;
+      color: white;
+    }
+
+    .clear:hover {
+      background: #d32f2f;
+    }
+
+    .delete {
+      background: #ff9800;
+      color: white;
+    }
+
+    .delete:hover {
+      background: #fb8c00;
+    }
+    h1{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator">
+  <h1 style="color:seagreen">Mini Calculator</h1>
+  <input type="text" id="display" readonly>
+  <div class="buttons">
+    <button onclick="append('(')">(</button>
+    <button onclick="append(')')">)</button>
+    <button onclick="percent()">%</button>
+    <button class="clear" onclick="clearDisplay()">C</button>
+
+    <button onclick="append('7')">7</button>
+    <button onclick="append('8')">8</button>
+    <button onclick="append('9')">9</button>
+    <button onclick="append('/')">/</button>
+
+    <button onclick="append('4')">4</button>
+    <button onclick="append('5')">5</button>
+    <button onclick="append('6')">6</button>
+    <button onclick="append('*')">*</button>
+
+    <button onclick="append('1')">1</button>
+    <button onclick="append('2')">2</button>
+    <button onclick="append('3')">3</button>
+    <button onclick="append('-')">-</button>
+
+    <button onclick="toggleSign()">±</button>
+    <button onclick="append('0')">0</button>
+    <button onclick="append('.')">.</button>
+    <button onclick="append('+')">+</button>
+
+    <button onclick="squareRoot()">√</button>
+    <button class="delete" onclick="deleteLast()">DEL</button>
+    <button class="equal" onclick="calculate()">=</button>
+  </div>
+</div>
+
+<script>
+  const display = document.getElementById('display');
+
+  function append(value) {
+    display.value += value;
+  }
+
+  function clearDisplay() {
+    display.value = '';
+  }
+
+  function deleteLast() {
+    display.value = display.value.slice(0, -1);
+  }
+
+  function calculate() {
+    try {
+      display.value = eval(display.value);
+    } catch {
+      display.value = 'Error';
+    }
+  }
+
+  function percent() {
+    try {
+      display.value = parseFloat(display.value) / 100;
+    } catch {
+      display.value = 'Error';
+    }
+  }
+
+  function squareRoot() {
+    try {
+      display.value = Math.sqrt(eval(display.value));
+    } catch {
+      display.value = 'Error';
+    }
+  }
+
+  function toggleSign() {
+    try {
+      display.value = eval(display.value) * -1;
+    } catch {
+      display.value = 'Error';
+    }
+  }
+</script>
+
+</body>
+</html>
